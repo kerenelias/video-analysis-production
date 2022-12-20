@@ -13,7 +13,6 @@ def homepage(): # Redirecting to home page
     return render_template("index.html")
 
 if __name__ == '__main__':
-#     app.run(debug=True, host="0.0.0.0", port=5000)
     app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
 
 
