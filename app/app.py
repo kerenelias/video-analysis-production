@@ -23,7 +23,7 @@ def homepage(): # Redirecting to home page
 def get_json():
     data = request.get_data('user_input')
     data = str(data, 'utf-8')
-    bucket = storage_client.get_bucket('result_videointelligence')
+    bucket = storage_client.get_bucket('result_videointelligence1')
     blobs = list(bucket.list_blobs())
     for blob in blobs:
         if data in blob.name:
