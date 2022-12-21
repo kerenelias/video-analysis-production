@@ -11,7 +11,7 @@ execution_path = os.getcwd()
 from google.cloud import storage
 storage_client = storage.Client()
 
-app = Flask(__name__, template_folder=".")
+app = Flask(__name__, template_folder="templates")
 CORS(app)
 
 @app.route("/", methods= ['GET','POST'])
