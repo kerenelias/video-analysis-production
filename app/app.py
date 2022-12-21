@@ -29,7 +29,7 @@ def get_json():
         if data in blob.name:
             print(blob.name)
             blob.download_to_filename(f"{data}")
-            json_file = send_from_directory(".", f"{data}")
+            json_file = send_from_directory(execution_path, f"{data}")
             os.remove(f"{data}")
             return json_file
 
