@@ -28,9 +28,9 @@ def get_json():
     for blob in blobs:
         if data in blob.name:
             print(blob.name)
-            blob.download_to_filename(f"data/{data}")
-            json_file = send_from_directory("data/", f"{data}")
-            os.remove(f"data/{data}")
+            blob.download_to_filename(f"{data}")
+            json_file = send_from_directory(".", f"{data}")
+            os.remove(f"{data}")
             return json_file
 
 @app.route("/<path:path>")
