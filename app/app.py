@@ -9,7 +9,7 @@ import datetime
 execution_path = os.getcwd()
 
 from google.cloud import storage
-storage_client = storage.Client()
+storage_client = storage.Client("video-analysis-project-370709")
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)
@@ -23,7 +23,7 @@ def homepage(): # Redirecting to home page
 def get_json():
     data = request.get_data('user_input')
     data = str(data, 'utf-8')
-    bucket = storage_client.get_bucket('result_videointelligence1')
+    bucket = storage_client.get_bucket('result_videointelligence')
     blobs = list(bucket.list_blobs())
     for blob in blobs:
         if data in blob.name:
