@@ -41,5 +41,9 @@ def static_dir(path):
     #print(f"This is the path: {path} and this is file_name {file_name}")
     return send_from_directory(".", path)
 
+@app.route('/video')
+def video():
+    return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+
 if __name__ == '__main__':
     app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
