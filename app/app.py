@@ -10,6 +10,7 @@ execution_path = os.getcwd()
 
 from google.cloud import storage
 storage_client = storage.Client()
+bucket_name = 'result_videointelligence1'
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)
@@ -23,7 +24,7 @@ def homepage(): # Redirecting to home page
 def get_json():
     data = request.get_data('user_input')
     data = str(data, 'utf-8')
-    bucket = storage_client.get_bucket('result_videointelligence1')
+    bucket = storage_client.get_bucket(bucket_name)
     blobs = list(bucket.list_blobs())
     for blob in blobs:
         if data in blob.name:
@@ -39,11 +40,6 @@ def static_dir(path):
     file_name = request.get_data('json_input')
     #print(f"This is the path: {path} and this is file_name {file_name}")
     return send_from_directory(".", path)
-
-
-@app.route('/video')
-def video():
-    return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
     app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
